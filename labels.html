@@ -1,0 +1,13 @@
+<html>
+<body>
+
+<form action="/upload" method="get">
+    Select columns to remain fixed:<br>
+    {{range $element := .}}
+  <input type="checkbox" name="{{$element.Value}}" value="{{$element.Value}}">{{$element.Value}}<br>
+  {{end}}
+  <input type="submit" value="Send">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+<body>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+Field Separator:
+ <select name="separator" >
+  <option value="tab">Tabulação</option>
+  <option value=" ">Espaço</option>
+  <option value=";">;</option>
+  <option value=",">,</option>
+</select><br>
+    Select table to upload:
+    <input type="file" name="uploadFile"><br>
+    <input type="submit" value="Send Table" name="submit">
+</form>
+
+</body>
+</html>
