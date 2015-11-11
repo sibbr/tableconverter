@@ -1,13 +1,27 @@
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!-- STYLES -->
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<!-- END STYLE -->
+
+<!-- MENU GLOBAL -->
+<script type="text/javascript" charset="utf-8" src="http://www.sibbr.gov.br/menu/global_nav.js?v1.0"></script>
+<!-- END MENU GLOBAL -->
+
 <body>
-
-<form action="/upload" method="get">
-    Select columns to remain fixed:<br>
-    {{range $element := .}}
-  <input type="checkbox" name="{{$element.Value}}" value="{{$element.Value}}">{{$element.Value}}<br>
-  {{end}}
-  <input type="submit" value="Send">
-</form>
-
+<div class="container">
+  <div class="content"> 
+    <!-- FORM -->
+    <form action="/upload" method="get">
+      Select columns to remain fixed:<br>
+      {{range $element := .}}
+      <input type="checkbox" name="{{$element.Value}}" value="{{$element.Value}}">
+      {{$element.Value}}<br>
+      {{end}}
+      <input type="submit" value="Send">
+    </form>
+    <!-- END FORM --> 
+  </div>
+</div>
 </body>
 </html>

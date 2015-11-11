@@ -1,18 +1,36 @@
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<!-- STYLES -->
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<!-- END STYLE -->
+
+<!-- MENU GLOBAL -->
+<script type="text/javascript" charset="utf-8" src="http://www.sibbr.gov.br/menu/global_nav.js?v1.0"></script>
+<!-- END MENU GLOBAL -->
+
 <body>
-
-<form action="/upload" method="post" enctype="multipart/form-data">
-Field Separator:
- <select name="separator" >
-  <option value="tab">TabulaÃ§Ã£o</option>
-  <option value=" ">EspaÃ§o</option>
-  <option value=";">;</option>
-  <option value=",">,</option>
-</select><br>
-    Select table to upload:
-    <input type="file" name="uploadFile"><br>
-    <input type="submit" value="Send Table" name="submit">
-</form>
-
+<div class="container">
+  <div class="content"> 
+    <!-- FORM -->
+    <h2> Conversor de tabelas de dados<br>
+      ambientais para DWC </h2>
+    <form action="/upload" method="post" enctype="multipart/form-data" class="form-convert">
+      <span class="cor">Separador de campos:</span> <br>
+      <select name="separator" >
+        <option value="tab">Tabulação</option>
+        <option value=" ">Espaço</option>
+        <option value=";">;</option>
+        <option value=",">,</option>
+      </select>
+      <br>
+      <span class="cor">Carregue sua tabela:</span> <br>
+      <input type="file" name="uploadFile">
+      <br>
+      <br>
+      <input type="submit" value="CONVERTER TABELA" name="submit" class="submit">
+    </form>
+    <!-- END FORM --> 
+  </div>
+</div>
 </body>
 </html>
