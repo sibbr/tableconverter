@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"log"
 )
 
 type reshapeError struct {
@@ -221,8 +222,18 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	fsCSS := http.FileServer(http.Dir("css"))
+	http.Handle("/css/", http.StripPrefix("/css/", fsCSS))
+	
+	fsIMG := http.FileServer(http.Dir("img"))
+	http.Handle("/img/", http.StripPrefix("/img/", fsIMG))
+
+
 	http.HandleFunc("/upload", upload)
 	http.HandleFunc("/", home)
-	http.ListenAndServe("localhost:8080", nil)
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}
 
 }
