@@ -6,11 +6,12 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
+	"log"
 	"mime/multipart"
 	"net/http"
+	"sort"
 	"strconv"
 	"strings"
-	"log"
 )
 
 type reshapeError struct {
@@ -20,6 +21,16 @@ type reshapeError struct {
 func (c *reshapeError) Error() string {
 	return fmt.Sprintf("%s", c.prob)
 }
+
+// Labels placeholder for labels
+type Labels struct {
+	Value string
+	ID    int
+}
+
+var templates = template.Must(template.ParseFiles("labels.html"))
+var fp multipart.File
+var sep string
 
 // Melt will change format to wide -> long
 func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
@@ -34,6 +45,7 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 	dados.LazyQuotes = true
 
 	labels, err := dados.Read()
+
 	if err != nil {
 		return err
 	}
@@ -122,15 +134,6 @@ func indexContains(element string, elements *[]string) int {
 	return -1
 }
 
-// Labels placeholder for labels
-type Labels struct {
-	Value string
-}
-
-var templates = template.Must(template.ParseFiles("labels.html"))
-var fp multipart.File
-var sep string
-
 func upload(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		err := r.ParseMultipartForm(1000000 * 500)
@@ -150,6 +153,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
 		nlabels := make([]Labels, len(labels))
 		for k, v := range labels {
 			nlabels[k].Value = v
+			nlabels[k].ID = k
 		}
 
 		renderTemplate(w, "labels", &nlabels)
@@ -160,9 +164,20 @@ func upload(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		fixed := []string{}
-		for k := range r.Form {
-			fixed = append(fixed, k)
+		fixed := []int{}
+		reverseForm := map[int]string{}
+
+		for k, v := range r.Form {
+			numero, _ := strconv.Atoi(v[0])
+			fixed = append(fixed, numero)
+			reverseForm[numero] = k
+		}
+
+		sort.Ints(fixed)
+		ordenados := []string{}
+
+		for i := 0; i < len(fixed); i++ {
+			ordenados = append(ordenados, reverseForm[fixed[i]])
 		}
 
 		_, err := fp.Seek(0, 0)
@@ -170,7 +185,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "Error: %s", err)
 		}
 
-		err = Melt(fp, ioutil.Discard, fixed, sep)
+		err = Melt(fp, ioutil.Discard, ordenados, sep)
 		if err != nil {
 			fmt.Fprintf(w, "Error: %s", err)
 		}
@@ -182,7 +197,7 @@ func upload(w http.ResponseWriter, r *http.Request) {
 
 		w.Header().Set("Content-Disposition", "attachment; filename=converted.csv")
 		w.Header().Set("Content-Type", r.Header.Get("Content-Type"))
-		Melt(fp, w, fixed, sep)
+		Melt(fp, w, ordenados, sep)
 
 	}
 
@@ -225,10 +240,9 @@ func main() {
 
 	fsCSS := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fsCSS))
-	
+
 	fsIMG := http.FileServer(http.Dir("img"))
 	http.Handle("/img/", http.StripPrefix("/img/", fsIMG))
-
 
 	http.HandleFunc("/upload", upload)
 	http.HandleFunc("/", home)

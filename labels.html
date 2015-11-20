@@ -10,17 +10,17 @@
 
 <body>
 <div class="container">
-  <div class="content"> 
+  <div class="content">
     <!-- FORM -->
     <form action="/upload" method="get">
       Select columns to remain fixed:<br>
       {{range $element := .}}
-      <input type="checkbox" name="{{$element.Value}}" value="{{$element.Value}}">
+      <input type="checkbox" name="{{$element.Value}}" value="{{$element.ID}}" >
       {{$element.Value}}<br>
       {{end}}
       <input type="submit" value="Send">
     </form>
-    <!-- END FORM --> 
+    <!-- END FORM -->
   </div>
 </div>
 </body>
