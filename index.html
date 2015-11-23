@@ -10,11 +10,11 @@
 
 <body>
 <div class="container">
-  <div class="content"> 
+  <div class="content">
     <!-- FORM -->
     <h2> Conversor de tabelas de dados<br>
       ambientais para DWC </h2>
-    <form action="/upload" method="post" enctype="multipart/form-data" class="form-convert">
+    <form action="http://localhost:8080/upload" method="post" enctype="multipart/form-data" class="form-convert">
       <span class="cor">Separador de campos:</span> <br>
       <select name="separator" >
         <option value="tab">Tabulação</option>
@@ -29,7 +29,7 @@
       <br>
       <input type="submit" value="CONVERTER TABELA" name="submit" class="submit">
     </form>
-    <!-- END FORM --> 
+    <!-- END FORM -->
   </div>
 </div>
 </body>
