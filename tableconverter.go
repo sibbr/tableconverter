@@ -53,6 +53,9 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 	for k, v := range labels {
 		labels[k] = strings.TrimSpace(v)
 	}
+	for k, v := range fixed {
+		fixed[k] = strings.TrimSpace(v)
+	}
 
 	// stop if duplicate labels are found
 	found := map[string]int{}
