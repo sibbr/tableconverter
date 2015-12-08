@@ -142,6 +142,9 @@ func main() {
 	fsIMG := http.FileServer(http.Dir("img"))
 	http.Handle("/img/", http.StripPrefix("/img/", fsIMG))
 
+	fsJS := http.FileServer(http.Dir("js"))
+	http.Handle("/js/", http.StripPrefix("/js/", fsJS))
+
 	http.HandleFunc("/upload", upload)
 	http.HandleFunc("/", home)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
