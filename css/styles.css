@@ -7,37 +7,38 @@ body {
 	margin: 0 auto;
 }
 h2 {
-	font-size: 19px!important;
-	color: #45B0AB!important;
+	font-size: 19px;
+	color: #45B0AB;
 	padding-bottom: 11px;
 	border-bottom: solid 1px #eee;
 }
 select {
-	margin-bottom: 30px!important;
+	margin-bottom: 30px;
 	border: 1px solid #45B0AB;
 	border-radius: 4px;
 	height: 31px;
 	width: 124px;
 }
 input {
-	margin-bottom: 0px!important;
+	margin-bottom: 0px;
 	border: 1px solid #45B0AB;
 	border-radius: 4px;
-	padding: 10px 100px 30px 10px;
+	padding:10px -1px 10px 10px;
 	background-color: rgba(69, 176, 171, 0.11);
 }
 ul {
 	list-style: none;
 	margin-left: -40px;
+	text-align:left;
 }
 li {
-    font-size: 15px;
-    text-align: left;
-    line-height: 30px;
-    color: #4C4C4C;
+	font-size: 15px;
+	text-align: left;
+	line-height: 30px;
+	color: #4C4C4C;
 }
 #trueHeader .wrapper-sibbr {
-	height: 55px!important;
+	height: 55px;
 }
 .cor {
 	color: #7B7979;
@@ -49,7 +50,7 @@ li {
 	color: #fff;
 	padding: 7px;
 	border-radius: 4px;
-    margin-bottom: 15px!important;
+	margin-bottom: 15px;
 }
 .submit:hover {
 	background-color: #fff;
@@ -58,27 +59,31 @@ li {
 }
 .container {
 	position: relative;
-    top: 40px;
-    background-color: rgba(255, 255, 255, 0.54);
-    margin: 0 auto;
-    padding: 25px 0px 10px 0px;
-    text-align: center;
-    width: 500px;
-    min-width: 500px;
-    min-height: 350px;
-    border-radius: 7px;
+	top: 40px;
+	background-color: rgba(255, 255, 255, 0.54);
+	margin: 0 auto;
+	padding: 25px 0px 10px 0px;
+	text-align: center;
+	width: 500px;
+	min-width: 500px;
+	min-height: 350px;
+	border-radius: 7px;
 }
 .content {
-    background-color: white;
-    padding: 3px 30px 0px 30px;
-    margin: 0 auto;
-    text-align: center;
-    width: 77%;
-    border-radius: 7px;
-    min-height: 320px;
+	background-color: white;
+	padding: 3px 30px 0px 30px;
+	margin: 0 auto;
+	text-align: center;
+	width: 77%;
+	border-radius: 7px;
+	min-height: 320px;
 }
 .form-convert {
 	font-size: 11px;
 	line-height: 23px;
 	text-align: left;
+}
+.ckeck {
+	font-size:11px;
+	color: #45B0AB;
 }
