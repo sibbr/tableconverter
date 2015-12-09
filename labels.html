@@ -14,7 +14,7 @@
 <!-- END JQUERY -->
 
 <!-- JQUERY CHECKALL FUNCTION -->
-<script type="text/javascript">
+<script type="text/javascript" language="JavaScript">
 $(function(){
  $("#checkAll").click(function () {
      $('input:checkbox').not(this).prop('checked', this.checked);
@@ -23,12 +23,31 @@ $(function(){
 </script>
 <!-- END JQUERY CHECKALL FUNCTION -->
 
+<!-- JS VALIDATION INPUT FILE -->
+<script type="text/javascript" language="JavaScript">
+<!--
+function valida(form1) {
+	if (
+  document.getElementById("checkItem").checked == false) 
+	{
+  document.getElementById("aviso").innerHTML = ("* Escolha os campos que não quer converter");
+    	return false;
+	} else { 
+  document.getElementById("aviso2").innerHTML = ("* Tabela convertida!\n\rDownload da planilha iniciado");
+//  window.location.href = 'index.html';
+		return false;
+	}
+}
+//-->
+</script>
+<!-- END JS VALIDATION INPUT FILE -->
+
 <body>
 <div class="container">
   <div class="content">
     <h2>Selecione as colunas para definir</h2>
     <!-- FORM -->
-    <form action="/upload" method="get">
+    <form action="/upload" method="get" name="form1" onSubmit="return valida(this);">
       <ul>
         <input type="checkbox" id="checkAll" >
         <span class="ckeck">Selecionar todos</span>
@@ -37,10 +56,14 @@ $(function(){
         <li>
           <input type="checkbox" name="{{$element.Value}}" value="{{$element.ID}}" id="checkItem">
           {{$element.Value}} </li>
-        {{end}}
+        {{end}} <br />
+        <br />
+        <span id="aviso" style="color:red; font-weight:bold;" class="aviso"></span> <br />
       </ul>
       <p>
         <input type="submit" value="Ok" class="submit">
+      <p> <span id="aviso2" style="color:green; font-weight:bold;" class="aviso2"></span> <br />
+      </p>
       </p>
     </form>
     <!-- END FORM --> 

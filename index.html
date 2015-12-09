@@ -2,35 +2,55 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- STYLES -->
 <link href="css/styles.css" rel="stylesheet" type="text/css">
+<!-- STYLES EXTERNAL SUPPORT -->
 <link href="http://www.sibbr.gov.br/css/tableconverter.css" rel="stylesheet" type="text/css">
-<!-- END STYLE -->
+<!-- END STYLES -->
 
 <!-- MENU GLOBAL -->
 <script type="text/javascript" charset="utf-8" src="http://www.sibbr.gov.br/menu/global_nav.js?v1.0"></script>
-<!-- END MENU GLOBAL -->
+<!-- END MENU GLOBAL --
+>
+<!-- JS JQUERY -->
+<script type='text/javascript' src="js/jquery-2.0.2.js"></script>
+<!-- END JQUERY -->
+
+<!-- JS VALIDATION INPUT FILE -->
+<script type="text/javascript">
+function valida(form1){
+ if (form1.uploadFile.value == "") {
+  document.getElementById("aviso").innerHTML = ("* Escolha uma tabela para converter");
+  form1.uploadFile.focus();
+  return false;
+ } else {
+  return true;
+ }
+}
+</script>
+<!-- END JS VALIDATION INPUT FILE -->
 
 <body>
 <div class="container">
-  <div class="content">
+  <div class="content"> 
     <!-- FORM -->
-    <h2> Conversor de tabelas de dados<br>
+    <h2> Conversor de tabelas de dados<br />
       ambientais para DWC </h2>
-    <form action="http://localhost:8080/upload" method="post" enctype="multipart/form-data" class="form-convert">
-      <span class="cor">Separador de campos:</span> <br>
+    <form action="http://localhost:8080/upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
+      <span class="cor">Carregue a tabela:</span> <br />
+      <input name="uploadFile" type="file" class="namefile" id="uploadFile">
+      <span id="aviso" style="color:red;"></span> <br />
+      <br />
+      <span class="cor">Separador de campos:</span> <br />
       <select name="separator" >
         <option value="tab">Tabulação</option>
         <option value=" ">Espaço</option>
         <option value=";">;</option>
         <option value=",">,</option>
       </select>
-      <br>
-      <span class="cor">Carregue sua tabela:</span> <br>
-      <input name="uploadFile" type="file" class="namefile">
-      <br>
-      <br>
-      <input type="submit" value="CONVERTER TABELA" name="submit" class="submit">
+      <p>
+        <input type="submit" value="CONVERTER" name="submit" class="submit">
+      </p>
     </form>
-    <!-- END FORM -->
+    <!-- END FORM --> 
   </div>
 </div>
 </body>
