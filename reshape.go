@@ -2,10 +2,20 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"io"
 	"strconv"
 	"strings"
 )
+
+// error "handling"
+type reshapeError struct {
+	prob string
+}
+
+func (c *reshapeError) Error() string {
+	return fmt.Sprintf("%s", c.prob)
+}
 
 // Melt will change format to wide -> long
 func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {

@@ -8,8 +8,7 @@
 
 <!-- MENU GLOBAL -->
 <script type="text/javascript" charset="utf-8" src="http://www.sibbr.gov.br/menu/global_nav.js?v1.0"></script>
-<!-- END MENU GLOBAL --
->
+<!-- END MENU GLOBAL -->
 <!-- JS JQUERY -->
 <script type='text/javascript' src="js/jquery-2.0.2.js"></script>
 <!-- END JQUERY -->
@@ -30,11 +29,11 @@ function valida(form1){
 
 <body>
 <div class="container">
-  <div class="content"> 
+  <div class="content">
     <!-- FORM -->
     <h2> Conversor de tabelas de dados<br />
       ambientais para DWC </h2>
-    <form action="http://localhost:8080/upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
+    <form action="/upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
       <span class="cor">Carregue a tabela:</span> <br />
       <input name="uploadFile" type="file" class="namefile" id="uploadFile">
       <span id="aviso" style="color:red;"></span> <br />
@@ -50,7 +49,7 @@ function valida(form1){
         <input type="submit" value="CONVERTER" name="submit" class="submit">
       </p>
     </form>
-    <!-- END FORM --> 
+    <!-- END FORM -->
   </div>
 </div>
 </body>
