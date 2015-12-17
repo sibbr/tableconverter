@@ -146,14 +146,9 @@ func upload(w http.ResponseWriter, r *http.Request) {
 
 		// delete publisher
 		mutex.Lock()
-		// if _, ok := Publicadores[cookie.Value]; ok {
 		Publicadores[cookie.Value].fp.Close()
-		//publicador.fp.Close()
 		Publicadores[cookie.Value].form.RemoveAll()
-		// publicador.form.RemoveAll()
 		delete(Publicadores, cookie.Value)
-		fmt.Println(Publicadores)
-		// }
 		mutex.Unlock()
 
 	}
