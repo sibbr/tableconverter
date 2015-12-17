@@ -28,11 +28,11 @@ $(function(){
 <!--
 function valida(form1) {
 	if (
-  document.getElementById("checkItem").checked == false) 
+  document.getElementById("checkItem").checked == false)
 	{
   document.getElementById("aviso").innerHTML = ("* Escolha os campos que não quer converter");
     	return false;
-	} else { 
+	} else {
   document.getElementById("aviso2").innerHTML = ("* Tabela convertida!\n\rDownload da planilha iniciado");
 //  window.location.href = 'index.html';
 		return true;
@@ -47,7 +47,7 @@ function valida(form1) {
   <div class="content">
     <h2>Selecione as colunas para definir</h2>
     <!-- FORM -->
-    <form action="/upload" method="get" name="form1" onSubmit="return valida(this);">
+    <form action="upload" method="get" name="form1" onSubmit="return valida(this);">
       <ul>
         <input type="checkbox" id="checkAll" >
         <span class="ckeck">Selecionar todos</span>
@@ -66,7 +66,7 @@ function valida(form1) {
       </p>
       </p>
     </form>
-    <!-- END FORM --> 
+    <!-- END FORM -->
   </div>
 </div>
 </body>
