@@ -1,7 +1,7 @@
-<html lang="pt">
+<html lang="es">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- STYLES -->
-<link href="css/styles.css" rel="stylesheet" type="text/css">
+<link href="../../css/styles.css" rel="stylesheet" type="text/css">
 <!-- STYLES EXTERNAL SUPPORT -->
 <link href="http://www.sibbr.gov.br/css/tableconverter.css" rel="stylesheet" type="text/css">
 <!-- END STYLES -->
@@ -17,7 +17,7 @@
 <script type="text/javascript">
 function valida(form1){
  if (form1.uploadFile.value == "") {
-  document.getElementById("aviso").innerHTML = ("* Seleccione uma tabela para converter");
+  document.getElementById("aviso").innerHTML = ("* Seleccione una tabla para convertir");
   form1.uploadFile.focus();
   return false;
  } else {
@@ -31,23 +31,21 @@ function valida(form1){
 <div class="container">
   <div class="content">
     <!-- FORM -->
-    <h2> Conversor de tabelas de dados<br />
-      ambientais para publicar no</br>
-	  padrão Darwin Core</h2>
+    <h2>Convertidor de tablas</br>para publicar datos ambientales</br>en estándar Darwin Core</h2>
     <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
-      <span class="cor">Procure pela tabela (arquivo de texto):</span> <br />
+      <span class="cor">Seleccione su tabla (archivo de texto):</span> <br />
       <input name="uploadFile" type="file" class="namefile" id="uploadFile">
       <span id="aviso" style="color:red;"></span> <br />
       <br />
-      <span class="cor">Escolha o separador de campos da tabela:</span> <br />
-      <select name="separator"  >
-        <option value="tab">Tabulação</option>
-        <option value=" ">Espaço</option>
-        <option value=";">; (ponto e vírgula)</option>
-        <option value=",">, (vírgula)</option>
+      <span class="cor">Escoja el separador de campos de la tabla:</span> <br />
+      <select name="separator" >
+        <option value="tab">Tab</option>
+        <option value=" ">Espacio</option>
+        <option value=";">; (punto y coma)</option>
+        <option value=",">, (coma)</option>
       </select>
       <p>
-        <input type="submit" value="Carregar..." name="submit" class="submit">
+        <input type="submit" value="Cargar tabla..." name="submit" class="submit">
       </p>
     </form>
     <!-- END FORM -->

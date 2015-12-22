@@ -1,7 +1,7 @@
-<html lang="pt">
+<html lang="es">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- STYLES -->
-<link href="css/styles.css" rel="stylesheet" type="text/css">
+<link href="../../css/styles.css" rel="stylesheet" type="text/css">
 <link href="http://www.sibbr.gov.br/css/tableconverter.css" rel="stylesheet" type="text/css">
 <!-- END STYLE -->
 
@@ -30,10 +30,10 @@ function valida(form1) {
 	if (
   document.getElementById("checkItem").checked == false)
 	{
-  document.getElementById("aviso").innerHTML = ("* Selecione pelo menos uma coluna que NÃO quer converter");
+  document.getElementById("aviso").innerHTML = ("* Seleccione por lo menos una columna que NO quiera convertir");
     	return false;
 	} else {
-  document.getElementById("aviso2").innerHTML = ("* Tabela convertida!\n\rDownload do arquivo iniciado");
+  document.getElementById("aviso2").innerHTML = ("* ¡Conversión terminada!\n\rDescarga de archivo iniciada.");
 //  window.location.href = 'index.html';
 		return true;
 	}
@@ -45,12 +45,12 @@ function valida(form1) {
 <body>
 <div class="container">
   <div class="content">
-    <h2>Selecione as colunas que NÃO quer converter</h2>
+    <h2>Seleccione las columnas que NO quiere convertir</h2>
     <!-- FORM -->
     <form action="upload" method="get" name="form1" onSubmit="return valida(this);">
       <ul>
         <input type="checkbox" id="checkAll" >
-        <span class="ckeck">Selecionar todos</span>
+        <span class="ckeck">Seleccionar todo</span>
         <hr>
         {{range $element := .}}
         <li>
@@ -61,7 +61,7 @@ function valida(form1) {
         <span id="aviso" style="color:red; font-weight:bold;" class="aviso"></span> <br />
       </ul>
       <p>
-        <input type="submit" value="Converter!" class="submit">
+        <input type="submit" value="¡Convertir!" class="submit">
       <p> <span id="aviso2" style="color:green; font-weight:bold;" class="aviso2"></span> <br />
       </p>
       </p>
