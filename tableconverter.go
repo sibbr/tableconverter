@@ -183,7 +183,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	content, err := ioutil.ReadFile("index.html")
 	if err != nil {
 		w.WriteHeader(404)
-		fmt.Fprint(w, "Not found")
+		fmt.Fprint(w, "Page not found")
 	}
 	io.Copy(w, strings.NewReader(string(content)))
 }
