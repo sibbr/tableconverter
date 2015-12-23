@@ -21,7 +21,13 @@ function valida(form1){
   form1.uploadFile.focus();
   return false;
  } else {
-  return true;
+   if (form1.separator.value == "") {
+     document.getElementById("aviso1").innerHTML = ("* Escoja un separador");
+     form1.separator.focus();
+     return false;
+   } else {
+     return true;
+   }
  }
 }
 </script>
@@ -31,7 +37,9 @@ function valida(form1){
 <div class="container">
   <div class="content">
     <!-- FORM -->
-    <h2>Convertidor de tablas</br>para publicar datos ambientales</br>en estándar Darwin Core</h2>
+    <h2>Convertidor de tablas</br>
+      para publicar datos ambientales</br>
+      en estándar Darwin Core</h2>
     <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
       <span class="cor">Seleccione su tabla (archivo de texto):</span> <br />
       <input name="uploadFile" type="file" class="namefile" id="uploadFile">
@@ -39,11 +47,13 @@ function valida(form1){
       <br />
       <span class="cor">Escoja el separador de campos de la tabla:</span> <br />
       <select name="separator" >
+        <option value="" selected disabled ></option>
         <option value="tab">Tab</option>
         <option value=" ">Espacio</option>
         <option value=";">; (punto y coma)</option>
         <option value=",">, (coma)</option>
       </select>
+      <span id="aviso1" style="color:red;"></span>
       <p>
         <input type="submit" value="Cargar tabla..." name="submit" class="submit">
       </p>

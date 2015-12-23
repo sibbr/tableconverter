@@ -17,11 +17,17 @@
 <script type="text/javascript">
 function valida(form1){
  if (form1.uploadFile.value == "") {
-  document.getElementById("aviso").innerHTML = ("* Escolha uma tabela para converter");
+  document.getElementById("aviso").innerHTML = ("* Choose a table to convert");
   form1.uploadFile.focus();
   return false;
  } else {
-  return true;
+    if (form1.separator.value == "") {
+     document.getElementById("aviso1").innerHTML = ("* Choose a field separator");
+     form1.separator.focus();
+     return false;
+   } else {
+     return true;
+   }
  }
 }
 </script>
@@ -41,11 +47,13 @@ function valida(form1){
       <br />
       <span class="cor">Choose the field separator of the table:</span> <br />
       <select name="separator" >
+        <option value="" selected disabled ></option>
         <option value="tab">Tab</option>
         <option value=" ">Space</option>
         <option value=";">; (semicolon)</option>
         <option value=",">, (colon)</option>
       </select>
+      <span id="aviso1" style="color:red;"></span>
       <p>
         <input type="submit" value="Load table..." name="submit" class="submit">
       </p>
