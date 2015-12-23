@@ -52,13 +52,13 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 		found[v]++
 	}
 	if len(anyDuplicate) > 0 {
-		return &reshapeError{"Duplicated column names: " + strings.Join(anyDuplicate, ", ")}
+		return &reshapeError{"Error: Duplicated columns not allowed: " + strings.Join(anyDuplicate, ", ")}
 	}
 
 	writeMeasurementData := csv.NewWriter(output)
-	outputLabels := []string{"eventid"}
+	outputLabels := []string{"conversion_ID"}
 	outputLabels = append(outputLabels, fixed...)
-	outputLabels = append(outputLabels, "measurementType", "measurementValue")
+	outputLabels = append(outputLabels, "Variable_Name", "Varaible_Value")
 	if writeMeasurementData.Write(outputLabels) != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 		}
 	}
 	if len(fixedPos) < len(fixed) {
-		return &reshapeError{"Fixed column not found in dataset"}
+		return &reshapeError{"Selected fixed column(s) was not found in table file"}
 	}
 
 	// for each line do a rotation and write, no waste in memory

@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="es">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- STYLES -->
 <link href="../../css/styles.css" rel="stylesheet" type="text/css">
@@ -17,12 +17,12 @@
 <script type="text/javascript">
 function valida(form1){
  if (form1.uploadFile.value == "") {
-  document.getElementById("aviso").innerHTML = ("* Choose a table to convert");
+  document.getElementById("aviso").innerHTML = ("* Seleccione una tabla para convertir");
   form1.uploadFile.focus();
   return false;
  } else {
-    if (form1.separator.value == "") {
-     document.getElementById("aviso1").innerHTML = ("* Choose a field separator");
+   if (form1.separator.value == "") {
+     document.getElementById("aviso1").innerHTML = ("* Escoja un separador");
      form1.separator.focus();
      return false;
    } else {
@@ -37,25 +37,25 @@ function valida(form1){
 <div class="container">
   <div class="content">
     <!-- FORM -->
-    <h2>Wide to long format table connverter</br>
-	for sample-based data publishing</br>
-	using the Darwin Core standard</h2>
+    <h2>Convertidor de tablas</br>
+      para publicar datos ambientales</br>
+      en estándar Darwin Core</h2>
     <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
-      <span class="cor">Browse for a table (text file):</span> <br />
+      <span class="cor">Seleccione su tabla (archivo de texto):</span> <br />
       <input name="uploadFile" type="file" class="namefile" id="uploadFile">
       <span id="aviso" style="color:red;"></span> <br />
       <br />
-      <span class="cor">Choose the field separator of the table:</span> <br />
+      <span class="cor">Escoja el separador de campos de la tabla:</span> <br />
       <select name="separator" >
         <option value="" selected disabled ></option>
         <option value="tab">Tab</option>
-        <option value=" ">Space</option>
-        <option value=";">; (semicolon)</option>
-        <option value=",">, (colon)</option>
+        <option value=" ">Espacio</option>
+        <option value=";">; (punto y coma)</option>
+        <option value=",">, (coma)</option>
       </select>
       <span id="aviso1" style="color:red;"></span>
       <p>
-        <input type="submit" value="Load table..." name="submit" class="submit">
+        <input type="submit" value="Cargar tabla..." name="submit" class="submit">
       </p>
     </form>
     <!-- END FORM -->

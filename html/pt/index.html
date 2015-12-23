@@ -1,7 +1,7 @@
-<html lang="en">
+<html lang="pt">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- STYLES -->
-<link href="../../css/styles.css" rel="stylesheet" type="text/css">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
 <!-- STYLES EXTERNAL SUPPORT -->
 <link href="http://www.sibbr.gov.br/css/tableconverter.css" rel="stylesheet" type="text/css">
 <!-- END STYLES -->
@@ -17,18 +17,18 @@
 <script type="text/javascript">
 function valida(form1){
  if (form1.uploadFile.value == "") {
-  document.getElementById("aviso").innerHTML = ("* Choose a table to convert");
+  document.getElementById("aviso").innerHTML = ("* Escolha uma tabela para carregar");
   form1.uploadFile.focus();
   return false;
  } else {
     if (form1.separator.value == "") {
-     document.getElementById("aviso1").innerHTML = ("* Choose a field separator");
-     form1.separator.focus();
-     return false;
-   } else {
-     return true;
-   }
- }
+      document.getElementById("aviso1").innerHTML = ("* Escolha o separador de campos da tabela");
+      form1.separator.focus();
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 </script>
 <!-- END JS VALIDATION INPUT FILE -->
@@ -37,25 +37,25 @@ function valida(form1){
 <div class="container">
   <div class="content">
     <!-- FORM -->
-    <h2>Wide to long format table connverter</br>
-	for sample-based data publishing</br>
-	using the Darwin Core standard</h2>
+    <h2> Conversor de tabelas de dados<br />
+      ambientais para publicar no</br>
+	  padrão Darwin Core</h2>
     <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
-      <span class="cor">Browse for a table (text file):</span> <br />
+      <span class="cor">Carregue a tabela (aquivo de texto):</span> <br />
       <input name="uploadFile" type="file" class="namefile" id="uploadFile">
       <span id="aviso" style="color:red;"></span> <br />
       <br />
-      <span class="cor">Choose the field separator of the table:</span> <br />
+      <span class="cor">Escolha o separador de campos da tabela:</span> <br />
       <select name="separator" >
         <option value="" selected disabled ></option>
-        <option value="tab">Tab</option>
-        <option value=" ">Space</option>
-        <option value=";">; (semicolon)</option>
-        <option value=",">, (colon)</option>
+        <option value="tab">Tabulação</option>
+        <option value=" ">Espaço</option>
+        <option value=";">; (ponto e vírgula)</option>
+        <option value=",">, (vírgula)</option>
       </select>
       <span id="aviso1" style="color:red;"></span>
       <p>
-        <input type="submit" value="Load table..." name="submit" class="submit">
+        <input type="submit" value="Carregar tabela..." name="submit" class="submit">
       </p>
     </form>
     <!-- END FORM -->
