@@ -11,6 +11,7 @@ import (
 	"log"
 	"mime/multipart"
 	"net/http"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -195,7 +196,7 @@ func main() {
 			time.Sleep(30 * time.Second)
 			mutex.Lock()
 			for k, v := range Publicadores {
-				if v.created.Add(time.Duration(cookieDuration) * time.Second).After(time.Now()) {
+				if v.created.Add(time.Duration(cookieDuration) * time.Second).Before(time.Now()) {
 					Publicadores[k].fp.Close()
 					Publicadores[k].form.RemoveAll()
 					delete(Publicadores, k)
@@ -217,7 +218,13 @@ func main() {
 	http.HandleFunc("/upload", upload)
 	http.HandleFunc("/", home)
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	ipport := ":8080"
+
+	if env := os.Getenv("IPPORT"); env != "" {
+		ipport = env
+	}
+
+	if err := http.ListenAndServe(ipport, nil); err != nil {
 		log.Fatal(err)
 	}
 
