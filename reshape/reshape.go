@@ -13,9 +13,9 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+// along with tableconverter.  If not, see <http://www.gnu.org/licenses/>.
 
-package main
+package reshape
 
 import (
 	"encoding/csv"
@@ -24,15 +24,6 @@ import (
 	"strconv"
 	"strings"
 )
-
-// error "handling"
-type reshapeError struct {
-	prob string
-}
-
-func (c *reshapeError) Error() string {
-	return fmt.Sprintf("%s", c.prob)
-}
 
 // Melt will change format to wide -> long
 func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
@@ -69,7 +60,7 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 		found[v]++
 	}
 	if len(anyDuplicate) > 0 {
-		return &reshapeError{"Duplicated column names: " + strings.Join(anyDuplicate, ", ")}
+		return fmt.Errorf("Duplicated column names: " + strings.Join(anyDuplicate, ", "))
 	}
 
 	writeMeasurementData := csv.NewWriter(output)
@@ -87,7 +78,7 @@ func Melt(input io.Reader, output io.Writer, fixed []string, sep string) error {
 		}
 	}
 	if len(fixedPos) < len(fixed) {
-		return &reshapeError{"Fixed column not found in dataset"}
+		return fmt.Errorf("Fixed column not found in dataset")
 	}
 
 	// for each line do a rotation and write, no waste in memory
