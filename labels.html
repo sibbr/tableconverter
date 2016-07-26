@@ -15,59 +15,73 @@
 
 <!-- JQUERY CHECKALL FUNCTION -->
 <script type="text/javascript" language="JavaScript">
-$(function(){
- $("#checkAll").click(function () {
+  $(function(){
+   $("#checkAll").click(function () {
      $('input:checkbox').not(this).prop('checked', this.checked);
+   });
  });
-});
 </script>
 <!-- END JQUERY CHECKALL FUNCTION -->
 
 <!-- JS VALIDATION INPUT FILE -->
 <script type="text/javascript" language="JavaScript">
-<!--
-function valida(form1) {
-	if (
-  document.getElementById("checkItem").checked == false)
-	{
-  document.getElementById("aviso").innerHTML = ("* Escolha os campos que não quer converter");
-    	return false;
-	} else {
-  document.getElementById("aviso2").innerHTML = ("* Tabela convertida!\n\rDownload da planilha iniciado");
-//  window.location.href = 'index.html';
-		return true;
-	}
+  <!--
+
+
+
+
+  function validateForm() {
+
+    var checkedValue = null; 
+    var inputElements = document.getElementsByClassName('checkItem');
+    var hasChecked = false;
+    for(var i=0; inputElements[i]; ++i){
+      if(inputElements[i].checked){
+       checkedValue = inputElements[i].value;
+       hasChecked = true;
+     }
+   }
+
+   if (hasChecked) {
+    document.getElementById("aviso2").innerHTML = ("* Tabela convertida!\n\r o arquivo se encontra em sua pasta de Download padrão.");
+    return true;
+  } else {
+    document.getElementById("aviso").innerHTML = ("* Escolha os campos que deseja converter");
+    return false;
+  }
+
+
 }
 //-->
 </script>
 <!-- END JS VALIDATION INPUT FILE -->
 
 <body>
-<div class="container">
-  <div class="content">
-    <h2>Selecione as colunas para definir</h2>
-    <!-- FORM -->
-    <form action="upload" method="get" name="form1" onSubmit="return valida(this);">
-      <ul>
-        <input type="checkbox" id="checkAll" >
-        <span class="ckeck">Selecionar todos</span>
-        <hr>
-        {{range $element := .}}
-        <li>
-          <input type="checkbox" name="{{$element.Value}}" value="{{$element.ID}}" id="checkItem">
-          {{$element.Value}} </li>
-        {{end}} <br />
-        <br />
-        <span id="aviso" style="color:red; font-weight:bold;" class="aviso"></span> <br />
-      </ul>
-      <p>
-        <input type="submit" value="Ok" class="submit">
-      <p> <span id="aviso2" style="color:green; font-weight:bold;" class="aviso2"></span> <br />
-      </p>
-      </p>
-    </form>
-    <!-- END FORM -->
-  </div>
-</div>
-</body>
-</html>
+  <div class="container">
+    <div class="content">
+      <h2>Selecione as colunas no padrão DwC</h2>
+      <!-- FORM -->
+      <form action="upload" method="get" name="form1" onSubmit="return validateForm();">
+        <ul>
+          <input type="checkbox" id="checkAll" >
+          <span class="ckeck">Selecionar todos</span>
+          <hr>
+          {{range $element := .}}
+          <li>
+            <input type="checkbox" name="{{$element.Value}}" value="{{$element.ID}}" class="checkItem">
+            {{$element.Value}} </li>
+            {{end}} <br />
+            <br />
+            <span id="aviso" class="erro"></span> <br />
+          </ul>
+          <p>
+            <input type="submit" value="Concluir" class="submit">
+            <p> <span id="aviso2" class="aceito"></span> <br />
+            </p>
+          </p>
+        </form>
+        <!-- END FORM -->
+      </div>
+    </div>
+  </body>
+  </html>

@@ -3,14 +3,24 @@
 
 body {
 	font-family:Arial, Helvetica, sans-serif;
-	background-image:url(../img/bg.png);
+	background-image:url(../img/bg.png) !important;
 	margin: 0 auto;
 }
-h2 {
-	font-size: 19px;
+h1, h2, h3 {
 	color: #45B0AB;
 	padding-bottom: 11px;
 	border-bottom: solid 1px #eee;
+}
+
+h1{	font-size: 23px;
+}
+
+h2 {
+	font-size: 19px;
+}
+
+h3 {
+	font-size: 17px;
 }
 select {
 	margin-bottom: 30px;
@@ -59,24 +69,18 @@ li {
 }
 .container {
 	position: relative;
-	top: 40px;
-	background-color: rgba(255, 255, 255, 0.54);
+
 	margin: 0 auto;
 	padding: 25px 0px 10px 0px;
-	text-align: center;
-	width: 500px;
-	min-width: 500px;
-	min-height: 350px;
-	border-radius: 7px;
+	width: auto;
+max-width: 1170px;
 }
 .content {
 	background-color: white;
 	padding: 3px 30px 0px 30px;
 	margin: 0 auto;
-	text-align: center;
-	width: 77%;
-	border-radius: 7px;
-	min-height: 320px;
+	width: auto;
+max-width: 1170px;
 }
 .form-convert {
 	font-size: 11px;
@@ -86,4 +90,14 @@ li {
 .ckeck {
 	font-size:11px;
 	color: #45B0AB;
+}
+.aceito {
+	color:green;
+	font-weight:bold;
+	display: block;
+}
+.erro {
+	color:red; 
+	font-weight:bold;
+	display: block;
 }

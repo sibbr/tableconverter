@@ -1,9 +1,9 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="pt-br" />
 <!-- STYLES -->
 <link href="css/styles.css" rel="stylesheet" type="text/css">
 <!-- STYLES EXTERNAL SUPPORT -->
-<link href="http://www.sibbr.gov.br/css/tableconverter.css" rel="stylesheet" type="text/css">
 <!-- END STYLES -->
 
 <!-- MENU GLOBAL -->
@@ -15,42 +15,76 @@
 
 <!-- JS VALIDATION INPUT FILE -->
 <script type="text/javascript">
-function valida(form1){
- if (form1.uploadFile.value == "") {
-  document.getElementById("aviso").innerHTML = ("* Escolha uma tabela para converter");
-  form1.uploadFile.focus();
-  return false;
- } else {
-  return true;
- }
-}
+
+  function comprova_extensao(formulario, arquivo) {
+   extensoes_permitidas = new Array(".csv");
+   meuerro = "";
+   if (!arquivo) {
+      //Se não tenho arquivo, é porque não se selecionou um arquivo no formulário.
+      meuerro = "Por favor selecione um arquivo do tipo" + extensoes_permitidas.join();
+    }else{
+      //recupero a extensão deste nome de arquivo
+      extensao = (arquivo.substring(arquivo.lastIndexOf("."))).toLowerCase();
+      //alert (extensao);
+      //comprovo se a extensão está entre as permitidas
+      permitida = false;
+      for (var i = 0; i < extensoes_permitidas.length; i++) {
+       if (extensoes_permitidas[i] == extensao) {
+         permitida = true;
+         break;
+       }
+     }
+     if (!permitida) {
+       meuerro = "Por favor selecione um arquivo do tipo: " + extensoes_permitidas.join();
+
+     }else {
+      return true;
+    }
+  }
+   //se estou aqui é porque não se pode submeter
+   alert (meuerro);
+   return false;
+ } 
 </script>
 <!-- END JS VALIDATION INPUT FILE -->
 
 <body>
-<div class="container">
-  <div class="content">
-    <!-- FORM -->
-    <h2> Conversor de tabelas de dados<br />
-      ambientais para DWC </h2>
-    <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" onSubmit="return valida(this);">
-      <span class="cor">Carregue a tabela:</span> <br />
-      <input name="uploadFile" type="file" class="namefile" id="uploadFile">
-      <span id="aviso" style="color:red;"></span> <br />
-      <br />
-      <span class="cor">Separador de campos:</span> <br />
-      <select name="separator" >
-        <option value="tab">Tabulação</option>
-        <option value=" ">Espaço</option>
-        <option value=";">;</option>
-        <option value=",">,</option>
-      </select>
-      <p>
-        <input type="submit" value="CONVERTER" name="submit" class="submit">
-      </p>
-    </form>
-    <!-- END FORM -->
-  </div>
-</div>
-</body>
-</html>
+  <div class="container">
+    <div class="content">
+
+      <h1>MycenaConverter</h1>
+      <p>MycenaConverter é uma ferramenta desenvolvida pelo SiBBr para converter linhas em colunas no formato chave e valor. Esse processo é feito em planilhas de dados ecológicos de maneira automatizada.</p>
+
+      <p>Instruções:<p>
+        <ol>
+          <li>Salve a planilha de dados em formato CSV (texto separado por vírgula).</li>
+          <li>Carregue a planilha de dados.</li>
+          <li>Escolha o separador de campos apropriado na caixa de seleção.</li>
+          <li>Clique em Converter.</li>
+          <li>Você será levado a uma nova página contendo o nome das colunas da planilha.</li>
+          <li>Selecione as colunas da planilha que estão no padrão Darwin Core. As colunas não selecionadas serão convertidas no formato chave e valor.</li>
+          <li>Clique em Concluir</li>
+          <li>O download da planilha convertida será iniciado automaticamente e o arquivo estará em seu computador.</li>
+        </ol>
+        <!-- FORM -->
+          <form action="upload" name="form1" method="post" enctype="multipart/form-data" class="form-convert" >
+            <span class="cor">Selecione uma planilha para converter</span> <br />
+            <input name="uploadFile" type="file" value="Anexar" class="namefile" id="uploadFile">
+            <span id="aviso" style="color:red;"></span> <br />
+            <br />
+            <span class="cor">Selecione o tipo de separação de celulas</span> <br />
+            <select name="separator">
+              <option value="tab">Tabulação</option>
+              <option value=" ">Espaço</option>
+              <option value=";">;</option>
+              <option value=",">,</option>
+            </select>
+            <p>
+              <input type="submit" value="Converter" name="submit" class="submit" onclick="return comprova_extensao(this.form, this.form.uploadFile.value)">
+            </p>
+          </form>
+          <!-- END FORM -->
+        </div>
+      </div>
+    </body>
+    </html>
